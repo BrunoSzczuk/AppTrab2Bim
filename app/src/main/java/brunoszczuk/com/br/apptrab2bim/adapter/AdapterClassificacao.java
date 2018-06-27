@@ -53,13 +53,11 @@ public class AdapterClassificacao extends BaseAdapter {
         try{
         if (Equipe.findAll(Equipe.class).hasNext()) {
             Equipe eq = Equipe.find(Equipe.class, "cd_equipe = ?", p.getCdEquipe()).get(0);
-
-
             ((TextView) view.findViewById(R.id.tvPosicao)).setText(p.getPos());
-            ((TextView) view.findViewById(R.id.tvSigla)).setText(p.getCdEquipe());
+            ((TextView) view.findViewById(R.id.tvSigla)).setText(eq.getSgEquipe());
             Picasso.with(view.getContext()).load(eq.getBrEquipe()).into((ImageView) view.findViewById(R.id.ivImagem));
-            ((TextView) view.findViewById(R.id.tvPontosGols)).setText(String.valueOf(p.getPontosGanhos().getQtTotal()));
-            ((TextView) view.findViewById(R.id.tvGolsPro)).setText(p.getGolsPro());
+            ((TextView) view.findViewById(R.id.tvGolsPro)).setText(p.getGolsPro() + "");
+            ((TextView) view.findViewById(R.id.tvPontosGols)).setText(String.valueOf(p.getGolsContra()));
         }
         }catch(Exception e){
             e.printStackTrace();

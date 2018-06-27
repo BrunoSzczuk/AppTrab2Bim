@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -24,7 +25,6 @@ import java.util.List;
 
 import brunoszczuk.com.br.apptrab2bim.adapter.AdapterClassificacao;
 import brunoszczuk.com.br.apptrab2bim.entity.Classificacao;
-import brunoszczuk.com.br.apptrab2bim.entity.Equipe;
 import brunoszczuk.com.br.apptrab2bim.jobs.DownloadClassificacao;
 
 public class MainActivity extends AppCompatActivity
@@ -69,9 +69,19 @@ public class MainActivity extends AppCompatActivity
         btAtt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!Equipe.findAll(Equipe.class).hasNext())
+                if (!brunoszczuk.com.br.apptrab2bim.entity.Equipe.findAll(brunoszczuk.com.br.apptrab2bim.entity.Equipe.class).hasNext())
                     Toast.makeText(MainActivity.this,"É ncessário baixar os dados de equipe para abrir a classificação",Toast.LENGTH_LONG).show();
                 carregaLista();
+            }
+        });
+        lvLista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(MainActivity.this, Time.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("cdEquipe", ((Classificacao)lvLista.getItemAtPosition(i)).getCdEquipe()+ "");
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
         carregaLista();
@@ -80,7 +90,7 @@ public class MainActivity extends AppCompatActivity
 
 
     private void carregaLista() {
-        classificacaoList = Classificacao.listAll(Classificacao.class,"pos asc, saldo_gols desc");
+        classificacaoList = Classificacao.listAll(Classificacao.class,"cast(pos as int) asc, saldo_gols desc");
         adapter = new AdapterClassificacao(this,classificacaoList);
         lvLista.setAdapter(adapter);
         calculaTamanhoAdapater();
@@ -140,7 +150,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent intent = new Intent(this, EquipesActivity.class);
+            Intent intent = new Intent(this, Equipe.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 

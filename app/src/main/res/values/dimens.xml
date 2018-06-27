@@ -10,4 +10,6 @@
     <dimen name="margin_bot">16dp</dimen>
     <dimen name="margin_top">10dp</dimen>
     <dimen name="margin_left">10dp</dimen>
+    <dimen name="letraTime">20dp</dimen>
+    <dimen name="margin_leftIMG">17dp</dimen>
 </resources>

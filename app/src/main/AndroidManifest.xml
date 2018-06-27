@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EquipesActivity"
+            android:name=".Equipe"
             android:label="@string/title_activity_equipe"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

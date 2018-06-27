@@ -72,6 +72,7 @@ public class DownloadClassificacao extends AsyncTask<String, String, ArrayList<S
         super.onPostExecute(strings);
         progress.setIndeterminate(false);
         progress.cancel();
-            Toast.makeText(context,"Classificação atualizada com sucesso",Toast.LENGTH_LONG).show();
+        Toast.makeText(context,"Classificação atualizada com sucesso",Toast.LENGTH_LONG).show();
+
     }
 }

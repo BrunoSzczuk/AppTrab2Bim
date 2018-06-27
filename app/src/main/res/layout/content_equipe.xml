@@ -5,20 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".EquipeActivity"
+    tools:context=".EquipesActivity"
     tools:showIn="@layout/activity_equipe">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/btDownloadEquipe"
-            android:layout_marginBottom="@dimen/margin_bot"
-            android:layout_marginTop="@dimen/margin_top"
-            android:text="@string/btDownloadEquipe"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/btDownloadEquipe"
+                android:layout_marginBottom="@dimen/margin_bot"
+                android:layout_marginTop="@dimen/margin_top"
+                android:text="@string/btDownloadEquipe"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_menu_share"
+                android:text="@string/btReload"
+                android:id="@+id/btAtt"/>
+        </LinearLayout>
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

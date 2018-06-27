@@ -141,11 +141,13 @@ public class Classificacao extends SugarRecord{
         this.aproveitamento = aproveitamento;
     }
 
-    public class Derrota {
+    public class Derrota extends SugarRecord{
 
         @SerializedName("qtMandante")
         @Expose
         private Integer qtMandante;
+        @Unique
+        private String cdEquipe;
         @SerializedName("qtTotal")
         @Expose
         private Integer qtTotal;
@@ -155,6 +157,14 @@ public class Classificacao extends SugarRecord{
 
         public Integer getQtMandante() {
             return qtMandante;
+        }
+
+        public String getCdEquipe() {
+            return cdEquipe;
+        }
+
+        public void setCdEquipe(String cdEquipe) {
+            this.cdEquipe = cdEquipe;
         }
 
         public void setQtMandante(Integer qtMandante) {
@@ -181,85 +191,13 @@ public class Classificacao extends SugarRecord{
 
     ;
 
-    public class Empate {
+    public class Empate  extends SugarRecord{
 
         @SerializedName("qtMandante")
         @Expose
         private Integer qtMandante;
-        @SerializedName("qtTotal")
-        @Expose
-        private Integer qtTotal;
-        @SerializedName("qtVisitante")
-        @Expose
-        private Integer qtVisitante;
-
-        public Integer getQtMandante() {
-            return qtMandante;
-        }
-
-        public void setQtMandante(Integer qtMandante) {
-            this.qtMandante = qtMandante;
-        }
-
-        public Integer getQtTotal() {
-            return qtTotal;
-        }
-
-        public void setQtTotal(Integer qtTotal) {
-            this.qtTotal = qtTotal;
-        }
-
-        public Integer getQtVisitante() {
-            return qtVisitante;
-        }
-
-        public void setQtVisitante(Integer qtVisitante) {
-            this.qtVisitante = qtVisitante;
-        }
-    }
-
-    public class Jogos {
-
-        @SerializedName("qtMandante")
-        @Expose
-        private Integer qtMandante;
-        @SerializedName("qtTotal")
-        @Expose
-        private Integer qtTotal;
-        @SerializedName("qtVisitante")
-        @Expose
-        private Integer qtVisitante;
-
-        public Integer getQtMandante() {
-            return qtMandante;
-        }
-
-        public void setQtMandante(Integer qtMandante) {
-            this.qtMandante = qtMandante;
-        }
-
-        public Integer getQtTotal() {
-            return qtTotal;
-        }
-
-        public void setQtTotal(Integer qtTotal) {
-            this.qtTotal = qtTotal;
-        }
-
-        public Integer getQtVisitante() {
-            return qtVisitante;
-        }
-
-        public void setQtVisitante(Integer qtVisitante) {
-            this.qtVisitante = qtVisitante;
-        }
-    }
-
-    public class PontosGanhos {
-
-        @SerializedName("qtMandante")
-        @Expose
-        private Integer qtMandante;
+        @Unique
+        private String cdEquipe;
         @SerializedName("qtTotal")
         @Expose
         private Integer qtTotal;
@@ -291,13 +229,22 @@ public class Classificacao extends SugarRecord{
             this.qtVisitante = qtVisitante;
         }
 
+        public String getCdEquipe() {
+            return cdEquipe;
+        }
+
+        public void setCdEquipe(String cdEquipe) {
+            this.cdEquipe = cdEquipe;
+        }
     }
 
-    public class Vitoria {
+    public class Jogos extends SugarRecord{
 
         @SerializedName("qtMandante")
         @Expose
         private Integer qtMandante;
+        @Unique
+        private String cdEquipe;
         @SerializedName("qtTotal")
         @Expose
         private Integer qtTotal;
@@ -309,8 +256,111 @@ public class Classificacao extends SugarRecord{
             return qtMandante;
         }
 
+        public String getCdEquipe() {
+            return cdEquipe;
+        }
+
+        public void setCdEquipe(String cdEquipe) {
+            this.cdEquipe = cdEquipe;
+        }
+
         public void setQtMandante(Integer qtMandante) {
             this.qtMandante = qtMandante;
+        }
+
+        public Integer getQtTotal() {
+            return qtTotal;
+        }
+
+        public void setQtTotal(Integer qtTotal) {
+            this.qtTotal = qtTotal;
+        }
+
+        public Integer getQtVisitante() {
+            return qtVisitante;
+        }
+
+        public void setQtVisitante(Integer qtVisitante) {
+            this.qtVisitante = qtVisitante;
+        }
+    }
+
+    public class PontosGanhos extends SugarRecord{
+
+        @SerializedName("qtMandante")
+        @Expose
+        private Integer qtMandante;
+        @SerializedName("qtTotal")
+        @Expose
+        private Integer qtTotal;
+        @SerializedName("qtVisitante")
+        @Expose
+        private Integer qtVisitante;
+        @Unique
+        private String cdEquipe;
+
+        public Integer getQtMandante() {
+            return qtMandante;
+        }
+
+        public void setQtMandante(Integer qtMandante) {
+            this.qtMandante = qtMandante;
+        }
+
+        public Integer getQtTotal() {
+            return qtTotal;
+        }
+
+        public String getCdEquipe() {
+            return cdEquipe;
+        }
+
+        public void setCdEquipe(String cdEquipe) {
+            this.cdEquipe = cdEquipe;
+        }
+
+        public void setQtTotal(Integer qtTotal) {
+            this.qtTotal = qtTotal;
+        }
+
+        public Integer getQtVisitante() {
+            return qtVisitante;
+        }
+
+        public void setQtVisitante(Integer qtVisitante) {
+            this.qtVisitante = qtVisitante;
+        }
+
+    }
+
+    public class Vitoria extends SugarRecord{
+
+        @SerializedName("qtMandante")
+        @Expose
+        private Integer qtMandante;
+        @SerializedName("qtTotal")
+        @Expose
+        private Integer qtTotal;
+        @SerializedName("qtVisitante")
+        @Expose
+        private Integer qtVisitante;
+        @Unique
+        private String cdEquipe;
+
+        public Integer getQtMandante() {
+            return qtMandante;
+        }
+
+        public void setQtMandante(Integer qtMandante) {
+            this.qtMandante = qtMandante;
+        }
+
+        public String getCdEquipe() {
+            return cdEquipe;
+        }
+
+        public void setCdEquipe(String cdEquipe) {
+            this.cdEquipe = cdEquipe;
         }
 
         public Integer getQtTotal() {

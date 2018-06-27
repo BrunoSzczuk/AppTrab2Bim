@@ -3,8 +3,6 @@ package brunoszczuk.com.br.apptrab2bim;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,23 +16,24 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.orm.SugarContext;
 
 import java.util.List;
 
-import brunoszczuk.com.br.apptrab2bim.adapter.AdapterEquipe;
+import brunoszczuk.com.br.apptrab2bim.adapter.AdapterClassificacao;
 import brunoszczuk.com.br.apptrab2bim.entity.Classificacao;
 import brunoszczuk.com.br.apptrab2bim.entity.Equipe;
 import brunoszczuk.com.br.apptrab2bim.jobs.DownloadClassificacao;
-import brunoszczuk.com.br.apptrab2bim.jobs.DownloadEquipe;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     List<Classificacao> classificacaoList;
-    Button btDownloadClassificacao;
+    Button btDownloadClassificacao, btAtt;
     ListView lvLista;
+    AdapterClassificacao adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +44,8 @@ public class MainActivity extends AppCompatActivity
         SugarContext.init(this);//Instancia o Sugar
 
         btDownloadClassificacao = findViewById(R.id.btDownloadClassificacao);
+        lvLista = findViewById(R.id.lvLista);
+        btAtt = findViewById(R.id.btAtt);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -62,16 +63,26 @@ public class MainActivity extends AppCompatActivity
                         DownloadClassificacao(MainActivity.this);
                 download.executeOnExecutor
                         (AsyncTask.THREAD_POOL_EXECUTOR, new String[]{});
+                carregaLista();
             }
         });
+        btAtt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!Equipe.findAll(Equipe.class).hasNext())
+                    Toast.makeText(MainActivity.this,"É ncessário baixar os dados de equipe para abrir a classificação",Toast.LENGTH_LONG).show();
+                carregaLista();
+            }
+        });
+        carregaLista();
     }
 
 
 
     private void carregaLista() {
-        classificacaoList = Classificacao.listAll(Classificacao.class);
-        /*adapterEquipe = new AdapterEquipe(this,equipes);
-        lvLista.setAdapter(adapterEquipe);*/
+        classificacaoList = Classificacao.listAll(Classificacao.class,"pos asc, saldo_gols desc");
+        adapter = new AdapterClassificacao(this,classificacaoList);
+        lvLista.setAdapter(adapter);
         calculaTamanhoAdapater();
     }
 
@@ -81,6 +92,7 @@ public class MainActivity extends AppCompatActivity
         int length = adapter.getCount();
         for (int i =0; i< length; i++){
             View listView = adapter.getView(i, null, lvLista);
+            if (listView == null) return;
             listView.measure(0,0);
             totalHeight+= listView.getMeasuredHeight();
         }
@@ -128,7 +140,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent intent = new Intent(this, EquipeActivity.class);
+            Intent intent = new Intent(this, EquipesActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 

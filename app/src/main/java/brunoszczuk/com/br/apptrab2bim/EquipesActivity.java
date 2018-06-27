@@ -2,8 +2,6 @@ package brunoszczuk.com.br.apptrab2bim;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -14,12 +12,11 @@ import android.widget.ListView;
 
 import java.util.List;
 
-import brunoszczuk.com.br.apptrab2bim.R;
 import brunoszczuk.com.br.apptrab2bim.adapter.AdapterEquipe;
 import brunoszczuk.com.br.apptrab2bim.entity.Equipe;
 import brunoszczuk.com.br.apptrab2bim.jobs.DownloadEquipe;
 
-public class EquipeActivity extends AppCompatActivity {
+public class EquipesActivity extends AppCompatActivity {
 
 
     Button btDownloadEquipe;
@@ -32,7 +29,6 @@ public class EquipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_equipe);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         btDownloadEquipe = findViewById(R.id.btDownloadEquipe);
         lvLista = findViewById(R.id.lvLista);
 
@@ -40,7 +36,7 @@ public class EquipeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DownloadEquipe downloadEquipe = new
-                        DownloadEquipe(EquipeActivity.this);
+                        DownloadEquipe(EquipesActivity.this);
                 downloadEquipe.executeOnExecutor
                         (AsyncTask.THREAD_POOL_EXECUTOR, new String[]{});
             }

@@ -3,6 +3,7 @@ package brunoszczuk.com.br.apptrab2bim.jobs;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -56,5 +57,6 @@ public class DownloadEquipe extends AsyncTask<String, String, ArrayList<String>>
         super.onPostExecute(strings);
         progress.setIndeterminate(false);
         progress.cancel();
+        Toast.makeText(context,"Equipes baixadas com sucesso",Toast.LENGTH_LONG).show();
     }
 }

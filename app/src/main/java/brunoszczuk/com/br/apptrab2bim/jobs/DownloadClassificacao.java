@@ -3,6 +3,7 @@ package brunoszczuk.com.br.apptrab2bim.jobs;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -43,7 +44,20 @@ public class DownloadClassificacao extends AsyncTask<String, String, ArrayList<S
         String classificacaoList = WSUtil.consomeWS(URL, "getClassificacaoList", null, NAMESPACE);
         Type type = new TypeToken<List<Classificacao>>() {}.getType();
         List<Classificacao> list = new Gson().fromJson(classificacaoList, type);
-        Classificacao.saveInTx(list);
+        for (int i = 0; i < list.size(); i++){
+            list.get(i).getDerrota().setCdEquipe(list.get(i).getCdEquipe());
+            list.get(i).getEmpate().setCdEquipe(list.get(i).getCdEquipe());
+            list.get(i).getJogos().setCdEquipe(list.get(i).getCdEquipe());
+            list.get(i).getPontosGanhos().setCdEquipe(list.get(i).getCdEquipe());
+            list.get(i).getVitoria().setCdEquipe(list.get(i).getCdEquipe());
+
+            list.get(i).getVitoria().save();
+            list.get(i).getPontosGanhos().save();
+            list.get(i).getJogos().save();
+            list.get(i).getEmpate().save();
+            list.get(i).getDerrota().save();
+            list.get(i).save();
+        }
 
         return null;
     }
@@ -58,5 +72,6 @@ public class DownloadClassificacao extends AsyncTask<String, String, ArrayList<S
         super.onPostExecute(strings);
         progress.setIndeterminate(false);
         progress.cancel();
+            Toast.makeText(context,"Classificação atualizada com sucesso",Toast.LENGTH_LONG).show();
     }
-    }
+}

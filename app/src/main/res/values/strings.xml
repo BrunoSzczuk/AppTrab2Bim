@@ -97,5 +97,7 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="btDownloadEquipe">Baixar Equipe</string>
-    <string name="btDownloadClassificacao">Atualizar Classificação</string>
+    <string name="btDownloadClassificacao">Baixar Classificação</string>
+    <string name="btReload">Carregar</string>
+    <string name="title_activity_time">Time</string>
 </resources>
